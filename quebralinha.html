@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto com Quebras de Linha</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 700px;
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            background-color: #222222;
+            color: #e0e0e0;
+            border-radius: 4px;
+            padding: 10px;
+            box-sizing: border-box;
+            spellcheck: false;
+            resize: vertical;
+            border: 1px solid transparent;
+            outline: none;
+        }
+        textarea:hover {
+            border: 1px solid #444444;
+        }
+        button {
+            background-color: #333333;
+            color: #e0e0e0;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #555555;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            button {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-container">
+            <h1>Texto com Quebras de Linha</h1>
+            <textarea id="inputText" placeholder="Digite seu texto aqui..." spellcheck="false"></textarea>
+            <div>
+                <button onclick="executarAcoes()">Executar Ações</button>
+            </div>
+        </div>
+        <div class="output-container">
+            <textarea id="outputText" readonly></textarea>
+        </div>
+    </div>
+    <script>
+        function executarAcoes() {
+            var inputText = document.getElementById('inputText').value;
+
+            // Adiciona um "<br/>" visível ao final de cada linha
+            var outputText = inputText.split('\n').map(line => line + '<br/>').join('\n');
+            document.getElementById('outputText').value = outputText;
+
+            // Copia o texto formatado para a área de transferência
+            navigator.clipboard.writeText(outputText);
+
+            // Limpa o campo de entrada
+            document.getElementById('inputText').value = '';
+        }
+    </script>
+</body>
+</html>
